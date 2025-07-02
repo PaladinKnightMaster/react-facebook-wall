@@ -1,32 +1,37 @@
 # Wall - Facebook 2009 Style
 
-A nostalgic recreation of Facebook's 2009 wall interface built with modern technologies.
+A nostalgic recreation of Facebook's 2009 wall interface built with modern technologies, featuring Greg Wientjes' profile.
 
 ## 🚀 Technologies Used
 
 - **React 19** - Latest React with improved concurrent features
 - **Next.js 15** - Full-stack React framework with App Router
 - **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first CSS framework
+- **Tailwind CSS v4** - Latest utility-first CSS framework
 - **shadcn/ui** - High-quality UI components
 - **Comic Neue Font** - Google Fonts for that authentic handwritten feel
+- **Custom SVG Graphics** - Stylized profile image
 
 ## ✨ Features
 
-- **Profile Sidebar**: User profile with photo, information, networks, and location
+- **Authentic Profile**: Greg Wientjes profile with custom SVG portrait
 - **Interactive Wall**: Post and view messages in classic Facebook style
 - **Real-time Updates**: Add new posts instantly
 - **Responsive Design**: Works on desktop and mobile devices
 - **2009 Aesthetic**: Authentic Facebook styling with blue theme and comic font
+- **Striped Input Area**: Diagonal hatched pattern matching the original mockup
+- **Pre-loaded Posts**: Realistic friend messages for demonstration
 
 ## 🎨 Design Elements
 
-- Blue header with "wall" branding
-- Sidebar with profile information sections
-- Dashed border input area for new posts
-- Clean post layout with author names and messages
-- Gray background with white content cards
-- Comic Neue font for that casual, friendly feel
+- **Blue header** with "wall" branding
+- **White rounded container** with proper Facebook 2009 layout
+- **Square profile image** with professional SVG illustration
+- **Gray information sections** (Information, Networks, Current City)
+- **Striped input area** with diagonal blue pattern and black dashed border
+- **Share button** positioned outside the input area
+- **Clean post layout** with author names and messages
+- **Comic Neue font** for that casual, friendly feel
 
 ## 🛠️ Installation & Setup
 
@@ -48,62 +53,105 @@ src/
 ├── app/
 │   ├── globals.css      # Global styles with Facebook colors
 │   ├── layout.tsx       # Root layout
-│   └── page.tsx         # Main page
+│   └── page.tsx         # Main page with Greg's profile
 ├── components/
 │   ├── ui/
 │   │   └── button.tsx   # Reusable button component
 │   ├── Header.tsx       # Blue top navigation
-│   ├── ProfileCard.tsx  # User profile sidebar
+│   ├── ProfileCard.tsx  # Greg's profile sidebar
 │   ├── Wall.tsx         # Main wall container
-│   ├── WallInput.tsx    # Post creation form
+│   ├── WallInput.tsx    # Post creation form with striped background
 │   └── WallPost.tsx     # Individual post display
-└── lib/
-    └── utils.ts         # Utility functions
+├── lib/
+│   └── utils.ts         # Utility functions
+public/
+├── greg-profile.svg     # Custom SVG portrait of Greg
+└── profile.svg          # Original placeholder (can be removed)
 ```
 
 ## 🎯 Components Overview
 
 - **Header**: Facebook-style blue header with "wall" branding
-- **ProfileCard**: Shows user photo, name, and info sections
-- **Wall**: Main container managing posts state
-- **WallInput**: Form for creating new posts with "Share" button
+- **ProfileCard**: Shows Greg's photo and info sections (no name in sidebar)
+- **Wall**: Main container with Greg's name, "Wall" title, and posts management
+- **WallInput**: Form with striped background pattern and external Share button
 - **WallPost**: Individual post component with author and message
+
+## 👤 Profile Features
+
+### Greg Wientjes Profile:
+- **Custom SVG Portrait**: Professional illustration based on real photo
+- **Location**: Palo Alto, CA
+- **Network**: Stanford Alum
+- **Authentic Details**: Light blue shirt, glasses, professional appearance
+
+### Pre-loaded Wall Posts:
+- **Anna**: Coffee maker debugging joke
+- **Adelaida**: Stack Overflow reference with emoji
+- **Juho**: Coding attire humor
+- **Maija**: Computer stickers vs. code joke
+- **Alex**: All-nighter coding experience
+- **Sheryl**: Dance moves deployment with #AgileDancer
 
 ## 🚀 Getting Started
 
-The app comes pre-loaded with sample posts from friends. You can:
+The app comes pre-configured with Greg's profile and sample posts. You can:
 
-1. Type in the input area to create new posts
-2. Click "Share" to add your post to the wall
-3. View all posts in chronological order (newest first)
+1. **View the authentic 2009 layout** with proper spacing and design
+2. **Type in the striped input area** to create new posts
+3. **Click "Share"** to add your post to the wall
+4. **See posts in chronological order** (newest first)
 
 ## 📱 Responsive Design
 
 The layout automatically adapts:
-- **Desktop**: Two-column layout with sidebar and main content
-- **Mobile**: Single column with stacked components
+- **Desktop**: Horizontal flex layout with sidebar and main content
+- **Mobile**: Maintains proportions with responsive containers
+- **All devices**: SVG graphics scale perfectly
 
 ## 🎨 Customization
 
 You can easily customize:
-- Colors in `globals.css` (Facebook blue theme variables)
-- Profile information in `page.tsx`
-- Initial posts in `Wall.tsx`
-- Styling with Tailwind classes
+- **Colors** in `globals.css` (Facebook blue theme variables)
+- **Profile information** in `page.tsx`
+- **Initial posts** in `Wall.tsx`
+- **SVG portrait** in `public/greg-profile.svg`
+- **Styling** with Tailwind classes
 
 ## 🧪 Built With Modern Standards
 
-- React 19 concurrent features
-- Next.js 15 App Router
-- TypeScript for type safety
-- Tailwind CSS for styling
-- Component-based architecture
-- Responsive design principles
+- **React 19** concurrent features and improved performance
+- **Next.js 15** App Router with optimized loading
+- **TypeScript** for complete type safety
+- **Tailwind CSS v4** for cutting-edge styling
+- **Component-based architecture** for maintainable code
+- **Responsive design principles** for all devices
+- **SVG graphics** for crisp, scalable images
+
+## 🔧 Technical Highlights
+
+- **Single-file profile management** with TypeScript interfaces
+- **State management** for real-time post updates
+- **CSS-in-JS** striped patterns for authentic mockup recreation
+- **Optimized images** with Next.js Image component
+- **Custom SVG creation** for personalized profile pictures
+- **Semantic HTML** structure for accessibility
+
+## 📸 Profile Photo
+
+The app features a custom SVG illustration of Greg Wientjes based on his professional photo, including:
+- Light blue button-up shirt
+- Professional glasses
+- Dark hair styling
+- Office/outdoor background
+- Authentic facial features and proportions
 
 ---
 
-**Nostalgia Level**: Maximum 📈
-**Year**: 2024 (but feels like 2009) 🕰️
+**Nostalgia Level**: Maximum 📈  
+**Year**: 2024 (but feels like 2009) 🕰️  
+**Profile**: Greg Wientjes ✅  
+**Authenticity**: Facebook 2009 Certified 🏆
 
 ## Learn More
 

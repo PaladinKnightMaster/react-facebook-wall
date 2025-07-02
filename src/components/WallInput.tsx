@@ -36,7 +36,7 @@ export function WallInput({ onPost }: WallInputProps) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="What's on your mind?"
-          className="w-full p-3 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 bg-white"
+          className="w-full p-3 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 bg-white text-gray-900"
           rows={3}
         />
       </div>

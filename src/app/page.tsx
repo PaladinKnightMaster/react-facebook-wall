@@ -14,7 +14,7 @@ export default function Home() {
             <div className="w-64 flex-shrink-0">
               <ProfileCard
                 name="Greg Wientjes"
-                profileImage="/profile.svg"
+                profileImage="/greg-profile.svg"
                 location="Palo Alto, CA"
                 network="Stanford Alum"
               />
