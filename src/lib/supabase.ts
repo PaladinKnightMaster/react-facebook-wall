@@ -1,10 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 
 // These will be set via environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Only create client if we have valid environment variables
+const hasValidConfig = supabaseUrl.includes('supabase.co') && supabaseAnonKey.length > 50
+
+export const supabase = hasValidConfig 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null
 
 // Database types
 export interface WallPost {
@@ -19,6 +24,10 @@ export interface WallPost {
 export const supabaseApi = {
   // Get all posts ordered by newest first
   async getPosts(): Promise<WallPost[]> {
+    if (!supabase) {
+      throw new Error('Supabase not configured')
+    }
+
     const { data, error } = await supabase
       .from('wall_posts')
       .select('*')
@@ -34,6 +43,10 @@ export const supabaseApi = {
 
   // Create a new post
   async createPost(author: string, message: string): Promise<WallPost> {
+    if (!supabase) {
+      throw new Error('Supabase not configured')
+    }
+
     const { data, error } = await supabase
       .from('wall_posts')
       .insert([
@@ -56,6 +69,10 @@ export const supabaseApi = {
 
   // Subscribe to real-time changes
   subscribeToChanges(callback: (posts: WallPost[]) => void) {
+    if (!supabase) {
+      return () => {} // Return empty cleanup function
+    }
+
     const channel = supabase
       .channel('wall_posts_changes')
       .on(
@@ -84,6 +101,10 @@ export const supabaseApi = {
 
   // Check connection status
   async testConnection(): Promise<boolean> {
+    if (!supabase) {
+      return false
+    }
+
     try {
       const { error } = await supabase.from('wall_posts').select('count').limit(1)
       return !error

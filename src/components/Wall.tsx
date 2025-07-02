@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { WallInput } from './WallInput'
 import { WallPost } from './WallPost'
 import { supabaseApi, WallPost as SupabaseWallPost } from '@/lib/supabase'
@@ -69,14 +69,14 @@ export function Wall({ userName }: WallProps) {
   const [useSupabase, setUseSupabase] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Convert Supabase post to local post format
-  const convertSupabasePost = (supabasePost: SupabaseWallPost): Post => ({
+  // Convert Supabase post to local post format - memoized to avoid dependency issues
+  const convertSupabasePost = useCallback((supabasePost: SupabaseWallPost): Post => ({
     id: supabasePost.id,
     author: supabasePost.author,
     message: supabasePost.message,
     timestamp: formatTimestamp(new Date(supabasePost.created_at).getTime()),
     createdAt: new Date(supabasePost.created_at).getTime()
-  })
+  }), [])
 
   const formatTimestamp = (createdAt: number): string => {
     const now = Date.now()
@@ -143,7 +143,7 @@ export function Wall({ userName }: WallProps) {
     }
 
     loadPosts()
-  }, [])
+  }, [convertSupabasePost])
 
   // Set up real-time subscription for Supabase
   useEffect(() => {
@@ -151,11 +151,28 @@ export function Wall({ userName }: WallProps) {
 
     const unsubscribe = supabaseApi.subscribeToChanges((supabasePosts) => {
       const convertedPosts = supabasePosts.map(convertSupabasePost)
-      setPosts(convertedPosts)
+      
+      // Update posts only if the list is different to avoid unnecessary re-renders
+      // and prevent duplicates from real-time updates
+      setPosts(currentPosts => {
+        // Check if we need to update by comparing IDs
+        const currentIds = new Set(currentPosts.map(p => p.id))
+        const newIds = new Set(convertedPosts.map(p => p.id))
+        
+        // If the sets are different, update
+        if (currentIds.size !== newIds.size || 
+            [...currentIds].some(id => !newIds.has(id)) || 
+            [...newIds].some(id => !currentIds.has(id))) {
+          return convertedPosts
+        }
+        
+        // No changes needed
+        return currentPosts
+      })
     })
 
     return unsubscribe
-  }, [useSupabase])
+  }, [useSupabase, convertSupabasePost])
 
   // Update timestamps periodically
   useEffect(() => {
@@ -177,8 +194,14 @@ export function Wall({ userName }: WallProps) {
 
       if (useSupabase) {
         // Create post in Supabase
-        await supabaseApi.createPost(userName, message)
-        // Real-time subscription will update the UI automatically
+        const newSupabasePost = await supabaseApi.createPost(userName, message)
+        
+        // Immediately convert and add to local state for instant UI update
+        const newPost = convertSupabasePost(newSupabasePost)
+        const updatedPosts = [newPost, ...posts]
+        setPosts(updatedPosts)
+        
+        // Real-time subscription will also update, but this ensures immediate feedback
       } else {
         // Create post locally
         const now = Date.now()

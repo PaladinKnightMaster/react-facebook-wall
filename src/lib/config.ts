@@ -21,7 +21,10 @@ export const config = {
       hasKey: !!key,
       urlValid: url ? url.includes('supabase.co') : false,
       keyValid: key ? key.startsWith('eyJ') : false,
-      isConfigured: config.isConfigured()
+      isConfigured: config.isConfigured(),
+      // Safe values for debugging (no sensitive data)
+      urlPreview: url ? `${url.substring(0, 20)}...` : 'not set',
+      keyLength: key ? key.length : 0
     }
   }
 } 
