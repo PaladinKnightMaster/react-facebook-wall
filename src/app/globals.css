@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --facebook-blue: #3b5998;
+  --facebook-light-blue: #6d84b4;
+  --facebook-gray: #f7f7f7;
+  --facebook-border: #d8dfea;
+  --facebook-text: #333333;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-facebook-blue: var(--facebook-blue);
+  --color-facebook-light-blue: var(--facebook-light-blue);
+  --color-facebook-gray: var(--facebook-gray);
+  --color-facebook-border: var(--facebook-border);
+  --color-facebook-text: var(--facebook-text);
+  --font-comic: 'Comic Neue', cursive;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Comic Neue', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}

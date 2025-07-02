@@ -1,0 +1,23 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="240" height="240" rx="8" fill="#2c3e50"/>
+  
+  <!-- Blurred office background -->
+  <rect x="160" y="40" width="60" height="60" rx="30" fill="#f39c12" opacity="0.3"/>
+  <rect x="180" y="120" width="40" height="40" rx="20" fill="#e74c3c" opacity="0.2"/>
+  
+  <!-- Person silhouette -->
+  <circle cx="120" cy="110" r="35" fill="#f4d1ae"/>
+  <rect x="85" y="145" width="70" height="95" rx="35" fill="#3498db"/>
+  
+  <!-- Shirt collar -->
+  <polygon points="105,145 135,145 130,160 110,160" fill="#ffffff"/>
+  
+  <!-- Hair -->
+  <path d="M85 90 Q120 70 155 90 Q150 75 120 70 Q90 75 85 90" fill="#8b4513"/>
+  
+  <!-- Facial features -->
+  <circle cx="108" cy="105" r="3" fill="#2c3e50"/>
+  <circle cx="132" cy="105" r="3" fill="#2c3e50"/>
+  <path d="M112 120 Q120 125 128 120" stroke="#2c3e50" stroke-width="2" fill="none"/>
+</svg> 
